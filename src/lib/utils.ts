@@ -1,0 +1,26 @@
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
+ 
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+export function formatDateToRelative(timestamp: string) {
+  const currentDate = new Date() as never;
+  const inputDate = new Date(timestamp) as never;
+
+  const timeDifference = currentDate - inputDate;
+  const secondsDifference = Math.floor(timeDifference / 1000);
+
+  if (secondsDifference < 60) {
+    return `${secondsDifference} seconds ago`;
+  } else if (secondsDifference < 3600) {
+    const minutes = Math.floor(secondsDifference / 60);
+    return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+  } else if (secondsDifference < 86400) {
+    const hours = Math.floor(secondsDifference / 3600);
+    return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+  } else {
+    const days = Math.floor(secondsDifference / 86400);
+    return `${days} ${days === 1 ? 'day' : 'days'} ago`;
+  }
+}
