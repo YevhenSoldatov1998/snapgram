@@ -17,7 +17,9 @@ export const INITIAL_STATE = {
   user: INITIAL_USER,
   isLoading: false,
   isAuth: false,
-  reset: () => {return;},
+  reset: () => {
+    return;
+  },
   setUser: (user: User) => {
     console.log(user)
   },
@@ -31,7 +33,7 @@ const AuthContext = createContext(INITIAL_STATE)
 
 const AuthProvider = ({children}: PropsWithChildren) => {
   const navigate = useNavigate()
-  const [user, setUser] = useState<typeof INITIAL_USER>(INITIAL_USER)
+  const [user, setUser] = useState<any>(INITIAL_USER)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isAuth, setIsAuth] = useState(false)
   const checkAuth = async () => {

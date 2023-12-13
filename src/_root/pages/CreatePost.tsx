@@ -1,4 +1,4 @@
-import PostForm from "@/components/forms/PostForm.tsx";
+import PostForm, {PostFormAction} from "@/components/forms/PostForm.tsx";
 
 const CreatePost = () => {
 
@@ -16,7 +16,7 @@ const CreatePost = () => {
             Create Post
           </h2>
         </div>
-        <PostForm/>
+        <PostForm action={PostFormAction.CREATE}/>
       </div>
     </div>
   );
