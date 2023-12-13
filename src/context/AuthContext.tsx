@@ -1,6 +1,7 @@
 import {createContext, PropsWithChildren, useContext, useEffect, useState} from "react";
 import {getCurrentUser} from "@/lib/appwrite/api.ts";
 import {useNavigate} from "react-router-dom";
+import {User} from "@/types";
 
 
 export const INITIAL_USER = {
@@ -17,9 +18,11 @@ export const INITIAL_STATE = {
   isLoading: false,
   isAuth: false,
   reset: () => {return;},
-  setUser: (user: any) => {
+  setUser: (user: User) => {
+    console.log(user)
   },
   setIsAuth: (isAuth: boolean) => {
+    console.log(isAuth)
   },
   checkAuth: async () => false as boolean,
 }

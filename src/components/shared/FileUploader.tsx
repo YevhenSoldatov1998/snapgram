@@ -14,7 +14,7 @@ const FileUploader: FC<FileUploaderProps> = ({imageUrl, fieldChange}) => {
     fieldChange(acceptedFiles)
     setFileUrl(URL.createObjectURL(acceptedFiles[0]))
   }, [file])
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({
+  const {getRootProps, getInputProps} = useDropzone({
     onDrop,
     accept: {
       'image/*': ['.png', '.jpg', '.jpeg', '.svg']

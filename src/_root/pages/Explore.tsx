@@ -2,23 +2,26 @@ import {Input} from "@/components/ui/input.tsx";
 import {useState} from "react";
 import SearchResults from "@/components/shared/SearchResults.tsx";
 import GridPostList from "@/components/shared/GridPostList.tsx";
-import {useGetPosts, useSearchPosts} from "@/lib/react-query/queriesAndMutatios.ts";
-import useDebounce from "@/hooks/useDebaunce.tsx";
+import {useGetPosts} from "@/lib/react-query/queriesAndMutatios.ts";
 import Loading from "@/components/shared/Loading.tsx";
+import {Post} from "@/types";
 
 const Explore = () => {
-  const {data: posts, fetchNextPage, hasNextPage} = useGetPosts()
+  const {data: posts,
+    // fetchNextPage,
+    // hasNextPage
+  } = useGetPosts()
   const [searchValue, setSearchValue] = useState('')
-  const debounceValue = useDebounce(searchValue, 500)
-  const {data: searchedPosts, isFetching: isSearchFetching} = useSearchPosts(debounceValue)
-console.log(posts)
-  if(!posts){
+  // const debounceValue = useDebounce(searchValue, 500)
+  // const {data: searchedPosts, isFetching: isSearchFetching} = useSearchPosts(debounceValue)
+
+  if (!posts) {
     return <div className="flex-center w-full h-full">
       <Loading/>
     </div>
   }
   const shouldShowSearchResults = searchValue !== ''
-  const shouldShowPosts = !shouldShowSearchResults && posts?.pages.every(item=> item?.documents.length === 0)
+  const shouldShowPosts = !shouldShowSearchResults && posts?.pages.every(item => item?.documents.length === 0)
 
 
   return (
@@ -31,7 +34,7 @@ console.log(posts)
             className="search"
             height="24"
             width="24"
-          />
+            alt="search"/>
           <Input
             type="text"
             placeholder="Search"
@@ -68,7 +71,7 @@ console.log(posts)
 
               ) :
               posts?.pages?.map((item, index) => (
-                <GridPostList key={`page-${index}`} posts={item?.documents}/>
+                <GridPostList key={`page-${index}`} posts={item?.documents as Post[]}/>
               ))}
         </div>
 

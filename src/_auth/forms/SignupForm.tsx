@@ -15,10 +15,10 @@ import {useUserContext} from "@/context/AuthContext.tsx";
 
 const SignupForm = () => {
   const navigate = useNavigate()
-  const {checkAuth, isLoading} = useUserContext()
+  const {checkAuth} = useUserContext()
   const {toast} = useToast()
   const {mutateAsync: createUserAccount, isPending: loadingCreateAccount} = useCreateUserAccount()
-  const {mutateAsync: signInAccount, isPending: loadingSignIn} = useSignInAccount()
+  const {mutateAsync: signInAccount} = useSignInAccount()
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
     defaultValues: {
